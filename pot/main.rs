@@ -1,41 +1,27 @@
 fn main() {
   let mut inp=get_line();
-  let mut result: i32=0;
-  let mut n: i32 = match inp.trim().parse() {
+  let mut result: u32=0;
+  let mut n: u32 = match inp.trim().parse() {
     Ok(num) => num,
     Err(_) => return,
   };
 
   loop {
     inp=get_line();
-    let num: i32 = match inp.trim().parse() {
+    let num: u32 = match inp.trim().parse() {
       Ok(num) => num,
       Err(_) => break,
     };
 
-    let power=num%10;
-    let base=num/10;
-    result += pow(base, power);
+    let power: u32=num%10;
+    let base: u32=num/10;
+    result += base.pow(power);
     n-=1;
     if n == 0 {
       println!("{}", result);
       break;
     }
   }
-}
-
-fn pow(base: i32, power: i32) -> i32{
-  let mut ans: i32=1;
-  let mut count=power;
-  loop {
-    ans *= base;
-    count-=1;
-    if count==0 {
-      break;
-    }
-  }
-
-  ans
 }
 
 fn get_line() -> String{
